@@ -8,6 +8,9 @@
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,9 +21,11 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/1e0fec2711.js" crossorigin="anonymous"></script>
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
@@ -29,7 +34,10 @@
 <body>
   <!-- Top nav bar (fixed) -->
   <nav>
-    <span>tweeter</span>
+    <span class="title">tweeter</span>
+    <span class="words">Write a new tweet
+      <div><i class="fas fa-angle-double-down"></i></div>
+    </span>
   </nav>
 
   <!-- Page-specific (main) content here -->
