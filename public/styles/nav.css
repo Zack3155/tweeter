@@ -4,6 +4,7 @@ nav{
   background-color: #4056a1;
   color: #FFFFFF;
   padding: 1.5em;
+  z-index: 100;
  }
 .title{
   font-family: "Bungee", sans-serif;
