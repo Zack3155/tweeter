@@ -2,14 +2,16 @@
   display: flex;
 } */
 .tweet-text{
-  text-align: left;    
+  /* text-align: left;     */
   border-bottom-width:3px;
   border-bottom-style: solid;
   padding-top: 15px;
   padding-bottom: 10px;
 }
 .tweet-question{
-  margin-right: 100px;
+  margin-top: 20px;
+  float: left;
+  margin-right: 20%;
   font-weight: bold;
 }
 
