@@ -1,0 +1,31 @@
+/* .new-tweet{
+  display: flex;
+} */
+.tweet-text{
+  text-align: left;    
+  border-bottom-width:3px;
+  border-bottom-style: solid;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+.tweet-question{
+  margin-right: 100px;
+  font-weight: bold;
+}
+
+/* .tweet-submit{
+  display: flex;
+} */
+
+.tweet-button{
+  margin-top: 10px;
+  background-color: #4056a1;
+  color: #FFFFFF;
+  font-family: "Bungee", sans-serif;
+  float: left;
+}
+.tweet-counter{
+  margin-top: 15px;
+  font-family: "Bungee", sans-serif;
+  float: right;
+}
