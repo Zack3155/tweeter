@@ -5,7 +5,7 @@
  */
 
 $(document).ready(function () {
-  //
+  // Load existing tweets into main pages
   const loadTweets = function () {
     $.ajax(
       {
@@ -22,7 +22,7 @@ $(document).ready(function () {
   };
   ///////////////////////////////////////////////////////////////////////////////////
 
-  // 
+  // New Tweet Submission using AJAX with jQuery
   const $form = $("#new-tweet-form");
   $form.submit(function (event) {
     event.preventDefault();
@@ -68,6 +68,7 @@ $(document).ready(function () {
     // Clear out tweet container
     const tweetContainer = $('#tweets-container');
     tweetContainer.empty();
+
     // loops through tweets
     // calls createTweetElement for each tweet
     // takes return value and appends it to the tweets container
