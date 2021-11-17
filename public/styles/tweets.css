@@ -9,11 +9,12 @@
 }
 .tweet header {
 	display: flex;
+	margin-top: 5px;
 	margin-left: 5px;
 	margin-right: 10px;
 }
 .tweet header .username {
-	margin-left: 10px;
+	margin-left: 5px;
 	font-size: medium;
 	font-weight: normal;
 }

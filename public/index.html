@@ -29,6 +29,9 @@
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/1e0fec2711.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
@@ -47,123 +50,30 @@
   <!-- Page Header -->
   <header class="main-header">
     <div>
-        <img src="/images/profile-hex.png"> 
+      <img src="/images/profile-hex.png">
     </div>
     <br>
     <div class="name">
-        <h2>Your Name</h2>
+      <h2>Your Name</h2>
     </div>
-</header>
+  </header>
 
   <!-- Page-specific (main) content here -->
-  <main class="container">
+  <main class="container" id="tweets-container">
 
+    <!-- Posting New Tweets -->
     <section class="new-tweet">
-      <form method="POST" action="/tweets/">
+      <form id="new-tweet-form">
         <div class="tweet-text">
-        <label class="tweet-question" for="tweet-text">What are you humming about?</label>
-        <textarea name="text" id="tweet-text"></textarea>
+          <label class="question" for="tweet-text">What are you humming about?</label>
+          <textarea name="text" id="tweet-text"></textarea>
         </div>
-        <div class="tweet-submit">
-          <button class="tweet-button" type="submit">Tweet</button>
-          <output class="tweet-counter" value="counter" for="tweet-text">140</output>
+        <div class="submit">
+          <button class="button" type="submit">Tweet</button>
+          <output class="counter" value="counter" for="tweet-text">140</output>
         </div>
       </form>
     </section>
-
-    <section class="tweet">
-      <form method="POST" action="/tweets/">
-        <header>
-          <i class="icon fas fa-user"></i>
-          <span class="username">Newton</span>
-        <span class="email">@Sirlsaac</span>
-        </header>
-
-        <article>
-          <p class="content">Hello World!!!</p>
-        </article>
-
-        <footer>
-          <p>10 days ago</p>
-          <div class="icons">
-          <i class="fas fa-flag fa-xs"></i>
-          <i class="fas fa-retweet fa-xs"></i>
-          <i class="fas fa-heart fa-xs"></i>
-          </div>
-        </footer>
-      </form>
-    </section>
-
-        <section class="tweet">
-      <form method="POST" action="/tweets/">
-        <header>
-          <i class="icon fas fa-user"></i>
-          <span class="username">Newton</span>
-        <span class="email">@Sirlsaac</span>
-        </header>
-
-        <article>
-          <p class="content">Hello World!!!</p>
-        </article>
-
-        <footer>
-          <p>10 days ago</p>
-          <div class="icons">
-          <i class="fas fa-flag fa-xs"></i>
-          <i class="fas fa-retweet fa-xs"></i>
-          <i class="fas fa-heart fa-xs"></i>
-          </div>
-        </footer>
-      </form>
-    </section>
-
-        <section class="tweet">
-      <form method="POST" action="/tweets/">
-        <header>
-          <i class="icon fas fa-user"></i>
-          <span class="username">Newton</span>
-        <span class="email">@Sirlsaac</span>
-        </header>
-
-        <article>
-          <p class="content">Hello World!!!</p>
-        </article>
-
-        <footer>
-          <p>10 days ago</p>
-          <div class="icons">
-          <i class="fas fa-flag fa-xs"></i>
-          <i class="fas fa-retweet fa-xs"></i>
-          <i class="fas fa-heart fa-xs"></i>
-          </div>
-        </footer>
-      </form>
-    </section>
-
-        <section class="tweet">
-      <form method="POST" action="/tweets/">
-        <header>
-          <i class="icon fas fa-user"></i>
-          <span class="username">Newton</span>
-        <span class="email">@Sirlsaac</span>
-        </header>
-
-        <article>
-          <p class="content">Hello World!!!</p>
-        </article>
-
-        <footer>
-          <p>10 days ago</p>
-          <div class="icons">
-          <i class="fas fa-flag fa-xs"></i>
-          <i class="fas fa-retweet fa-xs"></i>
-          <i class="fas fa-heart fa-xs"></i>
-          </div>
-        </footer>
-      </form>
-    </section>
-
-
   </main>
 </body>
 

@@ -5,7 +5,7 @@ $(document).ready(function () {
     const MAX = 140;
     let curr = $(this).val().length;
     let rem = MAX - curr;
-    let counter = $(this).parentsUntil(".new-tweet").find(".tweet-counter");
+    let counter = $(this).parentsUntil(".new-tweet").find(".counter");
 
     // Display remaining number of charrcters can type
     counter.text(rem);
