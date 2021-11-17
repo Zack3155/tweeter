@@ -1,17 +1,19 @@
-nav{
-  height: 120px;
-  width: 100%;
-  background-color: #4056a1;
-  color: #FFFFFF;
-  padding: 1.5em;
-  z-index: 100;
- }
-.title{
-  font-family: "Bungee", sans-serif;
+nav {
+	height: 120px;
+	width: 100%;
+	background-color: #4056a1;
+	color: #ffffff;
+	padding: 1.5em;
+	z-index: 9999;
+	position: fixed;
+	top: 0;
 }
-.words{
-  float: right;
+.title {
+	font-family: "Bungee", sans-serif;
 }
-.fa-angle-double-down{
-  margin-left: 75px;
+.words {
+	float: right;
+}
+.fa-angle-double-down {
+	margin-left: 75px;
 }
