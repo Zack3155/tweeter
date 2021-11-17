@@ -3,7 +3,15 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+///////////////////////////////////////////////////////////////////////////////////
+// Helper Function
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
 
+///////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
   // Load existing tweets into main pages
   const loadTweets = function () {
@@ -13,10 +21,9 @@ $(document).ready(function () {
         method: 'GET',
         dataType: 'json',
         success: (tweets) => {
-          // console.log(tweets);
           renderTweets(tweets)
         },
-        error: (err) => { console.log(`there was an error: ${err}`) }
+        error: (err) => { alert(`there was an error: ${err}`) }
       }
     );
   };
@@ -27,10 +34,15 @@ $(document).ready(function () {
   $form.submit(function (event) {
     event.preventDefault();
     const serializedData = $(this).serialize();
-    $.post('/tweets', serializedData, (response) => {
-      //console.log(serializedData);
-      loadTweets();
-    });
+    console.log(serializedData);
+    // Validation before sending the form data to the server
+    if (serializedData.length <= 5) alert('Content Should Not Be Cleared.');
+    else if (serializedData.length > 145) alert('Exceed Max Length. Please Edit Again.');
+    else {
+      $.post('/tweets', serializedData, (response) => {
+        loadTweets();
+      });
+    }
   });
   ///////////////////////////////////////////////////////////////////////////////////
 
@@ -41,11 +53,11 @@ $(document).ready(function () {
       <form method="POST" action="/tweets/">
         <header>
           <i class="icon fas fa-user"></i>
-          <span class="username">${tweetData.user.name}</span>
-          <span class="email">${tweetData.user.handle}</span>
+          <span class="username">${escape(tweetData.user.name)}</span>
+          <span class="email">${escape(tweetData.user.handle)}</span>
         </header>
         <article>
-          <p class="content">${tweetData.content.text}</p>
+          <p class="content">${escape(tweetData.content.text)}</p>
         </article>
         <footer>
           <p>${timeago.format(tweetData.created_at)}</p>
