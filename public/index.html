@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
   <link rel="stylesheet" href="/styles/header.css" type="text/css" />
   <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/tweets.css" type="text/css" />
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -31,6 +32,7 @@
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
+  <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
 </head>
 
 <body>
@@ -43,7 +45,7 @@
   </nav>
 
   <!-- Page Header -->
-  <header>
+  <header class="main-header">
     <div>
         <img src="/images/profile-hex.png"> 
     </div>
@@ -58,15 +60,38 @@
 
     <section class="new-tweet">
       <form method="POST" action="/tweets/">
-        
         <div class="tweet-text">
         <label class="tweet-question" for="tweet-text">What are you humming about?</label>
         <textarea name="text" id="tweet-text"></textarea>
         </div>
         <div class="tweet-submit">
           <button class="tweet-button" type="submit">Tweet</button>
-          <output class="tweet-counter" for="tweet-text">140</output>
+          <output class="tweet-counter" value="counter" for="tweet-text">140</output>
         </div>
+      </form>
+    </section>
+
+    <section class="tweet">
+      <form method="POST" action="/tweets/">
+
+        <header>
+          <i class="icon fas fa-user"></i>
+          <span class="username">Newton</span>
+        <span class="email">@Sirlsaac</span>
+        </header>
+
+        <article>
+          <p class="content">Hello World!!!</p>
+        </article>
+
+        <footer>
+          <p>10 days ago</p>
+          <div class="icons">
+          <i class="fas fa-flag fa-xs"></i>
+          <i class="fas fa-retweet fa-xs"></i>
+          <i class="fas fa-heart fa-xs"></i>
+          </div>
+        </footer>
       </form>
     </section>
 

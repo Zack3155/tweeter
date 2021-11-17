@@ -1,33 +1,36 @@
 /* .new-tweet{
   display: flex;
 } */
-.tweet-text{
-  /* text-align: left;     */
-  border-bottom-width:3px;
-  border-bottom-style: solid;
-  padding-top: 15px;
-  padding-bottom: 10px;
+.tweet-text {
+	display: flex;
+	flex-direction: column;
 }
-.tweet-question{
-  margin-top: 20px;
-  float: left;
-  margin-right: 20%;
-  font-weight: bold;
+.tweet-question {
+	margin-top: 30px;
+	align-self: flex-start;
+	font-weight: bold;
+}
+#tweet-text {
+	width: 100%;
+	background: transparent;
+	outline: none;
+	border: none;
+	border-bottom-width: 3px;
+	border-bottom-style: solid;
 }
 
-/* #tweet-text{
-  font-size: 16px;
-} */
-
-.tweet-button{
-  margin-top: 10px;
-  background-color: #4056a1;
-  color: #FFFFFF;
-  font-family: "Bungee", sans-serif;
-  float: left;
+.tweet-button {
+	margin-top: 10px;
+	background-color: #4056a1;
+	color: #ffffff;
+	font-family: "Bungee", sans-serif;
+	float: left;
 }
-.tweet-counter{
-  margin-top: 15px;
-  font-family: "Bungee", sans-serif;
-  float: right;
+.tweet-counter {
+	margin-top: 15px;
+	font-family: "Bungee", sans-serif;
+	float: right;
+}
+.char-exceed {
+	color: red;
 }
