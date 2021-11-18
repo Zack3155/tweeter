@@ -31,6 +31,7 @@
 	font-family: "Bungee", sans-serif;
 	float: right;
 }
-.char-exceed {
+.char-exceed,
+#error {
 	color: red;
 }

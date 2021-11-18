@@ -11,6 +11,24 @@ const escape = function (str) {
   return div.innerHTML;
 };
 
+const validate = function (data, element) {
+  $("#error").remove();
+  const $error = $(`<p id="error"><i class="fa fa-warning"></i></p>`);
+  if (!data || !data.length) {
+    const msg = `Content Must Not be Cleared<i class="fa fa-warning"></i>`;
+    $error.append(msg);
+    element.prepend($error).hide().slideDown(800);
+    return false;
+  }
+  else if (data.length > 140) {
+    const msg = 'Exceed Max Length. Please Edit Again<i class="fa fa-warning"></i>';
+    $error.append(msg);
+    element.prepend($error).hide().slideDown(800);
+    return false;
+  }
+  return true;
+};
+
 ///////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
   // Load existing tweets into main pages
@@ -29,17 +47,26 @@ $(document).ready(function () {
   };
   ///////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+  ///////////////////////////////////////////////////////////////////////////////////
+
   // New Tweet Submission using AJAX with jQuery
   const $form = $("#new-tweet-form");
   $form.submit(function (event) {
     event.preventDefault();
-    const serializedData = $(this).serialize();
-    console.log(serializedData);
-    // Validation before sending the form data to the server
-    if (serializedData.length <= 5) alert('Content Should Not Be Cleared.');
-    else if (serializedData.length > 145) alert('Exceed Max Length. Please Edit Again.');
-    else {
-      $.post('/tweets', serializedData, (response) => {
+
+    // Call for validation
+    const text = $('#tweet-text').val();
+    if (validate(text, $form)) {
+      // Call for serializing data
+      const serializedData = $(this).serialize();
+      // Clear out Tweet textarea and Reset Character Counter
+      $('#tweet-text').val('');
+      $('#text-counter').text(140);
+      // Call for reload tweets data
+      $.post('/tweets', serializedData, () => {
         loadTweets();
       });
     }
@@ -48,19 +75,25 @@ $(document).ready(function () {
 
   //  Tweet components to be created dynamically
   const createTweetElement = function (tweetData) {
+    const name = escape(tweetData.user.name);
+    const handle = escape(tweetData.user.handle)
+    const avatars = escape(tweetData.user.avatars);
+    const content = escape(tweetData.content.text);
+    const date = timeago.format(tweetData.created_at);
+
     let $tweet = //template strings for a tweet
       `<section class="tweet">
       <form method="POST" action="/tweets/">
         <header>
-          <i class="icon fas fa-user"></i>
-          <span class="username">${escape(tweetData.user.name)}</span>
-          <span class="email">${escape(tweetData.user.handle)}</span>
+          <img src="${avatars}">
+          <span class="name">${name}</span>
+          <span class="handle">${handle}</span>
         </header>
         <article>
-          <p class="content">${escape(tweetData.content.text)}</p>
+          <p class="content">${content}</p>
         </article>
         <footer>
-          <p>${timeago.format(tweetData.created_at)}</p>
+          <p>${date}</p>
           <div class="icons">
             <i class="fas fa-flag fa-xs"></i>
             <i class="fas fa-retweet fa-xs"></i>
@@ -77,8 +110,8 @@ $(document).ready(function () {
   // Taking in an array of tweet objects and then 
   // appending each one to the #tweets - container
   const renderTweets = function (tweets) {
-    // Clear out tweet container
     const tweetContainer = $('#tweets-container');
+    // Clear out tweet container
     tweetContainer.empty();
 
     // loops through tweets
@@ -86,7 +119,7 @@ $(document).ready(function () {
     // takes return value and appends it to the tweets container
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);
-      tweetContainer.prepend($tweet);
+      tweetContainer.prepend($tweet); // list tweets by reverse-chronological order
     }
   };
 
