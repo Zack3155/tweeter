@@ -3,53 +3,19 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-///////////////////////////////////////////////////////////////////////////////////
-// Helper Function
-const escape = function (str) {
-  let div = document.createElement("div");
-  div.appendChild(document.createTextNode(str));
-  return div.innerHTML;
-};
 
-const validate = function (data, element) {
-  $("#error").remove();
-  const $error = $(`<p id="error"><i class="fa fa-warning"></i></p>`);
-  if (!data || !data.length) {
-    const msg = `Content Must Not be Cleared<i class="fa fa-warning"></i>`;
-    $error.append(msg);
-    element.prepend($error).hide().slideDown(800);
-    return false;
-  }
-  else if (data.length > 140) {
-    const msg = 'Exceed Max Length. Please Edit Again<i class="fa fa-warning"></i>';
-    $error.append(msg);
-    element.prepend($error).hide().slideDown(800);
-    return false;
-  }
-  return true;
-};
-
-///////////////////////////////////////////////////////////////////////////////////
 $(document).ready(function () {
-  // Load existing tweets into main pages
-  const loadTweets = function () {
-    $.ajax(
-      {
-        url: '/tweets',
-        method: 'GET',
-        dataType: 'json',
-        success: (tweets) => {
-          renderTweets(tweets)
-        },
-        error: (err) => { alert(`there was an error: ${err}`) }
-      }
-    );
-  };
-  ///////////////////////////////////////////////////////////////////////////////////
 
-
-
-
+  // Make the posting new tweet form slide up or down 
+  // when the double arrow button pressed
+  $("#toggole-compose").click(function () {
+    const $newTweet = $(".new-tweet");
+    if ($newTweet.is(":visible")) {
+      $newTweet.slideUp();
+    } else {
+      $newTweet.slideDown();
+    }
+  });
   ///////////////////////////////////////////////////////////////////////////////////
 
   // New Tweet Submission using AJAX with jQuery
@@ -104,7 +70,6 @@ $(document).ready(function () {
     </section>`;
     return $tweet;
   };
-
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Taking in an array of tweet objects and then 
@@ -122,7 +87,50 @@ $(document).ready(function () {
       tweetContainer.prepend($tweet); // list tweets by reverse-chronological order
     }
   };
+  ///////////////////////////////////////////////////////////////////////////////////
 
+  // Load existing tweets into main pages
+  const loadTweets = function () {
+    $.ajax(
+      {
+        url: '/tweets',
+        method: 'GET',
+        dataType: 'json',
+        success: (tweets) => {
+          renderTweets(tweets)
+        },
+        error: (err) => { alert(`there was an error: ${err}`) }
+      }
+    );
+  };
   ///////////////////////////////////////////////////////////////////////////////////
 
 }); // document ready ends here
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// Helper Function
+const escape = function (str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+const validate = function (data, element) {
+  $("#error").remove();
+  const $error = $(`<p id="error"><i class="fa fa-warning"></i></p>`);
+  if (!data || !data.length) {
+    const msg = `Content Must Not be Cleared<i class="fa fa-warning"></i>`;
+    $error.append(msg);
+    element.prepend($error).hide().slideDown(800);
+    return false;
+  }
+  else if (data.length > 140) {
+    const msg = 'Exceed Max Length. Please Edit Again<i class="fa fa-warning"></i>';
+    $error.append(msg);
+    element.prepend($error).hide().slideDown(800);
+    return false;
+  }
+  return true;
+};
+///////////////////////////////////////////////////////////////////////////////////
