@@ -4,7 +4,8 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-$(document).ready(function () {
+$(document).ready(function () {// DOM is ready to use
+  ///////////////////////////////////////////////////////////////////////////////////
 
   // Make the posting new tweet form slide up or down 
   // when the double arrow button pressed
@@ -15,6 +16,20 @@ $(document).ready(function () {
     } else {
       $newTweet.slideDown();
     }
+  });
+  ///////////////////////////////////////////////////////////////////////////////////
+
+  // Make the page scroll to the top
+  // Button fades in when at top of the page
+  $(window).bind("scroll", function () {
+    if ($(this).scrollTop() > 50) {
+      $("#scrollToTop").fadeIn(400);
+    } else {
+      $('#scrollToTop').fadeOut(400);
+    }
+  });
+  $("#scrollToTop").click(function () {
+    $('html, body').animate({ scrollTop: '0px' }, 500);
   });
   ///////////////////////////////////////////////////////////////////////////////////
 
@@ -106,16 +121,17 @@ $(document).ready(function () {
   ///////////////////////////////////////////////////////////////////////////////////
 
 }); // document ready ends here
-
 ///////////////////////////////////////////////////////////////////////////////////
 
 // Helper Function
+// XSS Escaping
 const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
 
+// Validate tweet content
 const validate = function (data, element) {
   $("#error").remove();
   const $error = $(`<p id="error"><i class="fa fa-warning"></i></p>`);

@@ -32,3 +32,14 @@ main {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+#scrollToTop {
+	border-radius: 50%;
+	border-color: royalblue;
+	position: fixed;
+	display: none;
+	bottom: 30px;
+	right: 20px;
+}
+#scrollToTop:hover {
+	background-color: yellow;
+}
