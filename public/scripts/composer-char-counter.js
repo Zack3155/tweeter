@@ -1,6 +1,6 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
-  $('#tweet-text').on("input paste", function () {
+  $('#tweet-text').on("input paste", function() {
     // Related data
     const MAX = 140;
     let curr = $(this).val().length;
