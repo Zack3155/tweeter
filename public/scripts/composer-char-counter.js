@@ -10,8 +10,11 @@ $(document).ready(function() {
     // Display remaining number of charrcters can type
     counter.text(rem);
     // If exceed the limit, the number turns to red
-    if (rem < 0) counter.addClass('char-exceed');
-    else counter.removeClass('char-exceed');
+    if (rem < 0) {
+      counter.addClass('char-exceed');
+    } else {
+      counter.removeClass('char-exceed');
+    }
   });
 
 }); // document ready
