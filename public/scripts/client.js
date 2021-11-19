@@ -4,37 +4,39 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-$(document).ready(function() {// DOM is ready to use
+$(document).ready(function () {// DOM is ready to use
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Make the posting new tweet form slide up or down
   // when the double arrow button pressed
-  $("#toggole-compose").click(function() {
+  $("#toggole-compose").click(function () {
     const $newTweet = $(".new-tweet");
     if ($newTweet.is(":visible")) {
       $newTweet.slideUp();
     } else {
       $newTweet.slideDown();
+      // Force focus on text input
+      $('#tweet-text').focus();
     }
   });
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Make the page scroll to the top
   // Button fades in when at top of the page
-  $(window).bind("scroll", function() {
+  $(window).bind("scroll", function () {
     if ($(this).scrollTop() > 50) {
       $("#scrollToTop").fadeIn(400);
     } else {
       $('#scrollToTop').fadeOut(400);
     }
   });
-  $("#scrollToTop").click(function() {
+  $("#scrollToTop").click(function () {
     $('html, body').animate({ scrollTop: '0px' }, 500);
   });
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Validate tweet content
-  const validate = function(data, element) {
+  const validate = function (data, element) {
     $("#error").remove();
     const $error = $(`<p id="error"><i class="fa fa-warning"></i></p>`);
     if (!data || !data.length) {
@@ -54,7 +56,7 @@ $(document).ready(function() {// DOM is ready to use
 
   // New Tweet Submission using AJAX with jQuery
   const $form = $("#new-tweet-form");
-  $form.submit(function(event) {
+  $form.submit(function (event) {
     event.preventDefault();
 
     // Call for validation
@@ -74,7 +76,7 @@ $(document).ready(function() {// DOM is ready to use
   ///////////////////////////////////////////////////////////////////////////////////
 
   //  Tweet components to be created dynamically
-  const createTweetElement = function(tweetData) {
+  const createTweetElement = function (tweetData) {
     const name = escape(tweetData.user.name);
     const handle = escape(tweetData.user.handle);
     const avatars = escape(tweetData.user.avatars);
@@ -108,7 +110,7 @@ $(document).ready(function() {// DOM is ready to use
 
   // Taking in an array of tweet objects and then
   // appending each one to the #tweets - container
-  const renderTweets = function(tweets) {
+  const renderTweets = function (tweets) {
     const tweetContainer = $('#tweets-container');
     // Clear out tweet container
     tweetContainer.empty();
@@ -124,7 +126,7 @@ $(document).ready(function() {// DOM is ready to use
   ///////////////////////////////////////////////////////////////////////////////////
 
   // Load existing tweets into main pages
-  const loadTweets = function() {
+  const loadTweets = function () {
     $.ajax(
       {
         url: '/tweets',
@@ -146,7 +148,7 @@ $(document).ready(function() {// DOM is ready to use
 
 // Helper Function
 // XSS Escaping
-const escape = function(str) {
+const escape = function (str) {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;

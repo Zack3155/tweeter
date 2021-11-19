@@ -4,7 +4,7 @@ nav {
 	background-color: #4056a1;
 	color: #ffffff;
 	padding: 1.5em;
-	z-index: 9999;
+	z-index: 1;
 	position: fixed;
 	top: 0;
 }
