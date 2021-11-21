@@ -4,36 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-$(document).ready(function () {// DOM is ready to use
-  ///////////////////////////////////////////////////////////////////////////////////
-
-  // Make the posting new tweet form slide up or down
-  // when the double arrow button pressed
-  $("#toggole-compose").click(function () {
-    const $newTweet = $(".new-tweet");
-    if ($newTweet.is(":visible")) {
-      $newTweet.slideUp();
-    } else {
-      $newTweet.slideDown();
-      // Force focus on text input
-      $('#tweet-text').focus();
-    }
-  });
-  ///////////////////////////////////////////////////////////////////////////////////
-
-  // Make the page scroll to the top
-  // Button fades in when at top of the page
-  $(window).bind("scroll", function () {
-    if ($(this).scrollTop() > 50) {
-      $("#scrollToTop").fadeIn(400);
-    } else {
-      $('#scrollToTop').fadeOut(400);
-    }
-  });
-  $("#scrollToTop").click(function () {
-    $('html, body').animate({ scrollTop: '0px' }, 500);
-  });
-  ///////////////////////////////////////////////////////////////////////////////////
+$(document).ready(function () {
 
   // Validate tweet content
   const validate = function (data, element) {
@@ -52,28 +23,7 @@ $(document).ready(function () {// DOM is ready to use
     }
     return true;
   };
-  ///////////////////////////////////////////////////////////////////////////////////
 
-  // New Tweet Submission using AJAX with jQuery
-  const $form = $("#new-tweet-form");
-  $form.submit(function (event) {
-    event.preventDefault();
-
-    // Call for validation
-    const text = $('#tweet-text').val();
-    if (validate(text, $form)) {
-      // Call for serializing data
-      const serializedData = $(this).serialize();
-      // Clear out Tweet textarea and Reset Character Counter
-      $('#tweet-text').val('');
-      $('#text-counter').text(140);
-      // Call for reload tweets data
-      $.post('/tweets', serializedData, () => {
-        loadTweets();
-      });
-    }
-  });
-  ///////////////////////////////////////////////////////////////////////////////////
 
   //  Tweet components to be created dynamically
   const createTweetElement = function (tweetData) {
@@ -106,24 +56,20 @@ $(document).ready(function () {// DOM is ready to use
     </section>`;
     return $tweet;
   };
-  ///////////////////////////////////////////////////////////////////////////////////
+
 
   // Taking in an array of tweet objects and then
   // appending each one to the #tweets - container
   const renderTweets = function (tweets) {
     const tweetContainer = $('#tweets-container');
-    // Clear out tweet container
-    tweetContainer.empty();
+    tweetContainer.empty(); // Clear out tweet container
 
-    // loops through tweets
-    // calls createTweetElement for each tweet
-    // takes return value and appends it to the tweets container
     for (const tweet of tweets) {
       const $tweet = createTweetElement(tweet);
       tweetContainer.prepend($tweet); // list tweets by reverse-chronological order
     }
   };
-  ///////////////////////////////////////////////////////////////////////////////////
+
 
   // Load existing tweets into main pages
   const loadTweets = function () {
@@ -143,6 +89,58 @@ $(document).ready(function () {// DOM is ready to use
   };
   ///////////////////////////////////////////////////////////////////////////////////
 
+  // Initilization
+  loadTweets();
+
+
+  // Make the posting new tweet form slide up or down
+  // when the double arrow button pressed
+  $("#toggole-compose").click(function () {
+    const $newTweet = $(".new-tweet");
+    if ($newTweet.is(":visible")) {
+      $newTweet.slideUp();
+    } else {
+      $newTweet.slideDown();
+      // Force focus on text input
+      $('#tweet-text').focus();
+    }
+  });
+
+
+  // Make the page scroll to the top
+  // Button fades in when at top of the page
+  $(window).bind("scroll", function () {
+    if ($(this).scrollTop() > 50) {
+      $("#scrollToTop").fadeIn(400);
+    } else {
+      $('#scrollToTop').fadeOut(400);
+    }
+  });
+  $("#scrollToTop").click(function () {
+    $('html, body').animate({ scrollTop: '0px' }, 500);
+  });
+
+
+  // New Tweet Submission using AJAX with jQuery
+  const $form = $("#new-tweet-form");
+  $form.submit(function (event) {
+    event.preventDefault();
+
+    // Call for validation
+    const text = $('#tweet-text').val();
+    if (validate(text, $('.tweet-text'))) {
+      // Call for serializing data
+      const serializedData = $(this).serialize();
+      // Clear out Tweet textarea and Reset Character Counter
+      $('#tweet-text').val('');
+      $('#text-counter').text(140);
+      // Call for reload tweets data
+      $.post('/tweets', serializedData, () => {
+        loadTweets();
+      });
+    }
+  });
+
 }); // document ready ends here
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -153,4 +151,3 @@ const escape = function (str) {
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
-///////////////////////////////////////////////////////////////////////////////////

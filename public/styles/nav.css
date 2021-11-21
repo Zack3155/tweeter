@@ -16,6 +16,8 @@ nav {
 }
 .fa-angle-double-down {
 	margin-left: 75px;
+}
+.fa-angle-double-down:hover {
 	animation-name: animateDown;
 	border-radius: 30%;
 	animation-duration: 3s;
